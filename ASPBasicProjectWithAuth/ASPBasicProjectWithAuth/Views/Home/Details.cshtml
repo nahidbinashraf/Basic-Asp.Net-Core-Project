@@ -1,16 +1,33 @@
-﻿@model ASPBasicProjectWithAuth.ViewModels.HomeDetailsViewModel;
+﻿@model HomeDetailsViewModel
+
 @{
-    ViewData["Title"] = "Details";
+    ViewBag.Title = "Employee Details";
 }
 
-    <h1>@Model.PageTitle</h1>
-    <div>
-    @Model.Employee.Id
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Employee.Name</h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top" src="~/images/noimage.jpg" asp-append-version="true"/>
+
+                <h4>Employee ID : @Model.Employee.Id</h4>
+                <h4>Email : @Model.Employee.Email</h4>
+                <h4>Department : @Model.Employee.Department</h4>
+
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="home" asp-action="index" class="btn btn-primary m-1">Back</a>
+                <a href="#" class="btn btn-primary m-1">Edit</a>
+                <a href="#" class="btn btn-danger m-1">Delete</a>
+            </div>
+        </div>
     </div>
-<div>
-        @Model.Employee.Name
-</div>
-<div>
-    @Model.Employee.Email
 </div>
 
+@section Scripts {
+    <script src="~/js/CustomScript.js"></script>
+}

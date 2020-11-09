@@ -18,7 +18,7 @@ namespace ASPBasicProjectWithAuth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
-            services.AddTransient<IEmployeeRepository, MockEmployeeRepository>();
+            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,8 +30,12 @@ namespace ASPBasicProjectWithAuth
             }
            
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-          
+            // app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=home}/{action=index}/{id?}");
+  
+            });
 //            app.UseRouting();
             
         }

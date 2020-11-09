@@ -9,5 +9,6 @@ namespace ASPBasicProjectWithAuth.Models
     {
         IEnumerable<Employee> GetAllEmployees();
         Employee GetEmployee(int Id);
+        Employee AddEmployee(Employee employee);
     }
 }

@@ -20,15 +20,30 @@ namespace ASPBasicProjectWithAuth.Controllers
         {
             return View(_employeeRepository.GetAllEmployees());
         }
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel
             {
-                Employee = _employeeRepository.GetEmployee(1),
+                Employee = _employeeRepository.GetEmployee(id),
                 PageTitle = "Details Employee"
             };
            
             return View(homeDetailsViewModel);
+        }   
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                Employee emp = _employeeRepository.AddEmployee(employee);
+                return RedirectToAction("index");
+            }
+            else { return View();  }
         }
     }
 }
