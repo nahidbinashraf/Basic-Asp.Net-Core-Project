@@ -7,6 +7,7 @@
 <div class="card-deck">
     @foreach (var employee in Model)
     {
+    <div class="col-4">
         <div class="card m-3">
             <div class="card-header">
                 <h3>@employee.Name</h3>
@@ -18,5 +19,6 @@
                 <a href="#" class="btn btn-danger m-1">Delete</a>
             </div>
         </div>
+    </div>
     }
 </div>

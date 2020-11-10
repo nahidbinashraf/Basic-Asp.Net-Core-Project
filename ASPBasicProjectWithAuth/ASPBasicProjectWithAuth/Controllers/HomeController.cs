@@ -18,7 +18,7 @@ namespace ASPBasicProjectWithAuth.Controllers
         }
         public IActionResult Index()
         {
-            return View(_employeeRepository.GetAllEmployees());
+            return View(_employeeRepository.GetAllEmployee());
         }
         public IActionResult Details(int id)
         {
@@ -40,7 +40,7 @@ namespace ASPBasicProjectWithAuth.Controllers
         {
             if (ModelState.IsValid)
             {
-                Employee emp = _employeeRepository.AddEmployee(employee);
+                _employeeRepository.Add(employee);
                 return RedirectToAction("index");
             }
             else { return View();  }
