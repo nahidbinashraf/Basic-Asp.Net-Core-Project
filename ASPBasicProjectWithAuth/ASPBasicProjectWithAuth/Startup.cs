@@ -39,6 +39,7 @@ namespace ASPBasicProjectWithAuth
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
            
             app.UseStaticFiles();
             // app.UseMvcWithDefaultRoute();
