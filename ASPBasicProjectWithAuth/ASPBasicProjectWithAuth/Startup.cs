@@ -6,6 +6,7 @@ using ASPBasicProjectWithAuth.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +28,7 @@ namespace ASPBasicProjectWithAuth
         {
            services.AddDbContextPool<AppDbContext>(
                                     options => options.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
-
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddTransient<IEmployeeRepository, SQLEmployeeRepository>();
         }
@@ -43,6 +44,7 @@ namespace ASPBasicProjectWithAuth
            
             app.UseStaticFiles();
             // app.UseMvcWithDefaultRoute();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller=home}/{action=index}/{id?}");
