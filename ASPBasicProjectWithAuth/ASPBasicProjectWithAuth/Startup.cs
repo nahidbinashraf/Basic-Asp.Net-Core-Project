@@ -29,6 +29,13 @@ namespace ASPBasicProjectWithAuth
            services.AddDbContextPool<AppDbContext>(
                                     options => options.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            services.Configure<IdentityOptions>(option =>
+            {
+                option.Password.RequiredLength = 6;
+                option.Password.RequireLowercase = false;
+                option.Password.RequireUppercase = false;
+                option.Password.RequireNonAlphanumeric = false;
+            });
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddTransient<IEmployeeRepository, SQLEmployeeRepository>();
         }
