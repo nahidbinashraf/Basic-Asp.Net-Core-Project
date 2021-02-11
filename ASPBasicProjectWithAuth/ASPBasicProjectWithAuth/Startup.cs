@@ -37,6 +37,7 @@ namespace ASPBasicProjectWithAuth
                 option.Password.RequireLowercase = false;
                 option.Password.RequireUppercase = false;
                 option.Password.RequireNonAlphanumeric = false;
+               // option.User.RequireUniqueEmail = false;
             });
             services.AddMvc(
                 options => {
