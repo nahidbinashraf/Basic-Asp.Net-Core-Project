@@ -48,14 +48,6 @@ namespace ASPBasicProjectWithAuth.Controllers
             return View(registerViewModel);
         }
 
-        [HttpPost][HttpGet]
-        public async Task<IActionResult> IsEmailInUse(string email)
-        {
-            var user = await userManager.FindByEmailAsync(email);
-            if (user == null) return Json(true);
-            else return Json($"This {email} is already in use");
-        }
-
         [HttpGet]
         public IActionResult Login()
         {
@@ -63,18 +55,15 @@ namespace ASPBasicProjectWithAuth.Controllers
 
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel loginViewModel, string returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            if (ModelState.IsValid)
+
+            var result = await signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, loginViewModel.RememberMe, false);
+            if (result.Succeeded)
             {
-                var result = await signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, loginViewModel.RememberMe, false);
-                if (result.Succeeded)
-                {
-                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
-                    else return RedirectToAction("index", "home");
-                }
-                ModelState.AddModelError("", "Invalid login !!!");
+                return RedirectToAction("index", "home");
             }
+            ModelState.AddModelError("", "Invalid login !!!");
             return View();
         }
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ASPBasicProjectWithAuth.ViewModels
 {
@@ -11,7 +10,6 @@ namespace ASPBasicProjectWithAuth.ViewModels
     {
         [Required]
         [EmailAddress]
-        [Remote(action: "IsEmailInUse",controller: "Account")]
         public string Email { get; set; }
 
         [Required]
