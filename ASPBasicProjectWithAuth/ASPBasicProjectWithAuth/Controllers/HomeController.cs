@@ -7,7 +7,7 @@ using ASPBasicProjectWithAuth.Models;
 using ASPBasicProjectWithAuth.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Authorization;
+
 
 namespace ASPBasicProjectWithAuth.Controllers
 {
@@ -21,12 +21,10 @@ namespace ASPBasicProjectWithAuth.Controllers
             _employeeRepository = employeeRepository;
             _hostingEnvironment = hostingEnvironment;
         }
-        [AllowAnonymous]
         public IActionResult Index()
         {
             return View(_employeeRepository.GetAllEmployee());
         }
-        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             Employee employee = _employeeRepository.GetEmployee(id);
