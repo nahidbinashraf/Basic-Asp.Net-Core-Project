@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASPBasicProjectWithAuth.Models
 {
-    public class AppDbContext : IdentityDbContext<ApplicationUser>
+    public class AppDbContext : IdentityDbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> dbContextOptions)
             :base(dbContextOptions)

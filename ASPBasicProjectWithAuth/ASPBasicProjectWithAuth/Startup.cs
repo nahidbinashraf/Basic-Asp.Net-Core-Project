@@ -30,7 +30,7 @@ namespace ASPBasicProjectWithAuth
         {
            services.AddDbContextPool<AppDbContext>(
                                     options => options.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
             services.Configure<IdentityOptions>(option =>
             {
                 option.Password.RequiredLength = 6;
