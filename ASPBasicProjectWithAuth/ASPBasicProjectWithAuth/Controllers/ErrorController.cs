@@ -14,7 +14,10 @@ namespace ASPBasicProjectWithAuth.Controllers
             switch (statusCode)
             {
                 case 404:
-                    ViewBag.ErrorMessage = "Sorry, the resource you requested could not be found";
+                    ViewBag.ErrorMessage = $"Sorry, the resource you requested could not be found {statusCode}";
+                    break;
+                default:
+                    ViewBag.ErrorMessage = $"Sorry, the resource you requested could not be found {statusCode}";
                     break;
             }
 
