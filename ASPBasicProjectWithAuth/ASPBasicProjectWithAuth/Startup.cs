@@ -55,8 +55,12 @@ namespace ASPBasicProjectWithAuth
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseStatusCodePagesWithReExecute("/Error/{0}");
-            //db.Database.Migrate();
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            }
+                //db.Database.Migrate();
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseAuthorization();

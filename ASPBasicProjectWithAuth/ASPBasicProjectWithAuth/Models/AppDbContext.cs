@@ -10,7 +10,7 @@ namespace ASPBasicProjectWithAuth.Models
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> dbContextOptions)
-            :base(dbContextOptions)
+            : base(dbContextOptions)
         {
 
         }
@@ -19,6 +19,12 @@ namespace ASPBasicProjectWithAuth.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Seed();
+            foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
         }
+
     }
 }
