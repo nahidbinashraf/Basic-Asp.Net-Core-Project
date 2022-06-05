@@ -13,6 +13,7 @@ namespace ASPBasicProjectWithAuth.ViewModels
             new Claim("Create Role", "Create Role"),
             new Claim("Edit Role", "Edit Role"),
             new Claim("Delete Role", "Delete Role"),
+            new Claim("Administrator", "Administrator")
         };
     }
 }
