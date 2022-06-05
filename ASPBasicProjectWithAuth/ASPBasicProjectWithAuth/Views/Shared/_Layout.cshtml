@@ -47,7 +47,7 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="home" asp-action="create">Create</a>
                     </li>
-                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    @if (signInManager.IsSignedIn(User) && (await AuthorizationService.AuthorizeAsync(User, "DynamicRoleClaim")).Succeeded)
                     {
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="administrator" asp-action="listUsers">Manage User</a>

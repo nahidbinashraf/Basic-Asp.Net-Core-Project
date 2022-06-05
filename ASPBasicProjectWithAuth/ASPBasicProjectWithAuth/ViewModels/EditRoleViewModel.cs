@@ -11,6 +11,7 @@ namespace ASPBasicProjectWithAuth.ViewModels
         public EditRoleViewModel()
         {
             Users = new List<string>();
+            Claims = new List<string>();
         }
 
         public string Id { get; set; }
@@ -18,5 +19,7 @@ namespace ASPBasicProjectWithAuth.ViewModels
         [Required(ErrorMessage = "Role Name is required")]
         public string RoleName { get; set; }
         public List<string> Users { get; set; }
+
+        public List<string> Claims { get; set; }
     }
 }
